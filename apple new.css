@@ -8,32 +8,38 @@ img{
 }
 body{
     font-size: 20px;
-    font-family: 'Montserrat', sans-serif;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
 }
-.first-wrapper button,
-.second-wrapper button,
-.third-wrapper button,
-.fourth-left-wrapper button,
-.fifth-right-wrapper button,
-.sixth-left-wrapper button,
-.seventh-right-wrapper button,
-.eighth-left-wrapper button,
-.nineth-right-wrapper button{
-    font-size: 15px;
-    background: #06c;
-    color: white;
-    border-radius: 30px;
-    height: 37px;
-    padding: 0 20px;
+
+.button-wrapper{
+    padding-top: 22px;
+    font-size: 2.6vh;
 }
-.second-wrapper .buy{
-    color: #06c;
-    background: black;
+.button-wrapper ul li a{
+   background-color: rgb(29, 52, 156);
+   color: white;
+   padding: 10px 20px;
+   text-decoration: none;
+   border:1px;
+   border-radius: 25px;
+   }
+.button-wrapper ul li{
+    display:inline-block;
+    margin-right: 10px;
+    }
+
+.button-wrapper ul li:nth-child(2) a{
+    background-color: transparent;
+    border: 1px solid ;
+    color:rgb(66, 142, 241)
 }
-.third-wrapper .buy{
-    color: #06c;
-    background: #f1f1f1;
+
+.button-wrapper ul li a:hover{
+   background-color: rgb(29, 52, 156);
+   color: white;
 }
+
+
 .footer-computer-links-wrapper {
     display: none;
 }
@@ -41,7 +47,7 @@ body{
     display: none;
 }
 /*header*/
-.header-wrapper{
+.header-wrapper {
     height: 48px;
     position: fixed;
     top: 0;
@@ -51,67 +57,152 @@ body{
     color: black;
     font-weight: 200;
     font-size: 13px;
-    opacity: 0.9;
-    z-index: 10;
+    opacity: 0.98;
+    z-index: 1000;
 }
-.internal-wrapper{
+
+.internal-wrapper {
     height: 100%;
-    padding: 0 10px 0 15px;
+    max-width: 1024px;  /* Pins the max-width layout just like Apple's grid */
+    margin: 0 auto;
+    padding: 0 22px;
 }
-.header-wrapper .internal-wrapper > ul{
+
+.header-wrapper .internal-wrapper > ul {
     height: 100%;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 30px;
+    justify-content: space-between; /* Distributes items cleanly across the entire header width */
     list-style: none;
     color: black;
 }
-.header-wrapper .internal-wrapper > ul > li > a{
+
+/* Header standard text links and triggers */
+.header-wrapper .internal-wrapper > ul > li > a {
     display: flex;
     flex-direction: column;
     justify-content: center;
     opacity: 0.8;
-    color: black;
-    font-weight: 200;
-    font-family: Arial, Helvetica, sans-serif;
-
+    color: black !important;
+    font-weight: 400;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+    text-decoration: none;
+    height: 48px; /* Standardize click and hover zones */
+    padding: 0 8px;
 }
-.header-wrapper .internal-wrapper > ul > li:hover{
+
+.header-wrapper .internal-wrapper > ul > li:hover > a {
     opacity: 1;
 }
-.header-wrapper .internal-wrapper > ul > li.wide-screen-appear{
-    display: none;
+
+/* Default state hides navigation items unless inside desktop viewing limits */
+.header-wrapper .internal-wrapper > ul > li.wide-screen-appear {
+    display:none;
 }
+
 .logo-link img,
 .search-link img,
 .cart-link img,
-.menu-link img{
+.menu-link img {
     width: 18px;
     display: block;
 }
-.search-link img,
-.menu-link img{
-    padding:3px 0;
+
+/* --- Clean CSS Hover Overlay Engine --- */
+.desktop-dropdown {
+    position: static; /* Allows the absolute dropdown panel to span the true full width of viewport */
 }
-.logo-link{
-    margin-right: auto;
+
+/* Hides the slide down panels by default */
+.dropdown-panel {
+    display: none;
+    position: fixed;
+    top: 48px;
+    left: 0;
+    width: 100vw;
+    background-color: rgb(250, 247, 247);;
+    border-bottom: 1px solid #d2d2d7;
+    padding: 40px 0 60px 0;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.05);
+    z-index: 999;
 }
-.header-wrapper a{
-    color: white;
+
+/* The core mechanic: Displays the menu container panel instantly when hovering over the parent <li> wrapper */
+.desktop-dropdown:hover .dropdown-panel {
+    display: block;
+}
+
+.dropdown-container {
+    max-width: 1024px;
+    margin: 0 auto;
+    padding: 0 40px;
+    display: flex;
+    justify-content: flex-start;
+    gap: 80px;
+    text-align: left;
+}
+
+.dropdown-column h3 {
+    font-size: 12px;
+    color: #86868b;
+    font-weight: 400;
+    margin-bottom: 14px;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.dropdown-column ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.dropdown-column ul li a {
     text-decoration: none;
+    color: #1d1d1f !important;
+    font-size: 12px;
+    font-weight: 400;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    opacity: 0.88;
 }
-.menu-link details{
+
+.dropdown-column ul li a:hover {
+    opacity: 1;
+}
+
+/* Typography variant for primary links */
+.desktop-dropdown .dropdown-column:first-of-type ul li a{
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 1.2;
+    display: inline-block;
+    margin-bottom: 6px;
+    letter-spacing: -0.02em;
+}
+
+
+.right-links{
+    align-items: center;
+    display: flex;
+    gap:30px;
+}
+
+
+/* --- Mobile Menu Styles --- */
+.menu-link details {
     position: relative;
 }
-.menu-link summary{
+
+.menu-link summary {
     cursor: pointer;
     list-style: none;
 }
-.menu-link summary::-webkit-details-marker{
+
+.menu-link summary::-webkit-details-marker {
     display: none;
 }
-.mobile-menu{
+
+.mobile-menu {
     position: fixed;
     top: 48px;
     left: 0;
@@ -120,22 +211,28 @@ body{
     color: black;
     list-style: none;
     padding: 20px 40px 30px;
+    z-index: 999;
 }
 
-.mobile-menu > li >a{
-    color: black;
+.mobile-menu > li > a {
+    color: black !important;
+    text-decoration: none;
 }
-.mobile-menu li{
+
+.mobile-menu li {
     padding: 12px 0;
     font-size: 1.6em;
     font-weight: 500;
+    text-align: left;
 }
+
+
 /*1st Wrapper*/
-.first-wrapper{
-    padding-top: 80px;
+
+
+.first-wrapper, .second-wrapper, .third-wrapper{
     color: rgb(0, 0, 0);
     background-color: white;
-    background-image: url(../img/home/fathers_day.jpg);
     height: 500px;
     background-position: center;
     background-repeat: no-repeat;
@@ -143,21 +240,40 @@ body{
     text-align: center; 
     margin-bottom: 10px;
 }
-.first-wrapper .header{
-    font-size: 30px;
-    padding-bottom:10px;
+
+.first-wrapper{
+    padding-top: 70px;
+    background-image: url(img/home/fathers_day.jpg);
 }
+
 .first-text-wrapper{
     font-size: 20px;
     font-weight: 400;
     padding-bottom:10px;
 }
+
 /*second-wrapper*/
 .second-wrapper{
     padding-top: 50px;
+    background-image: url(img/home/hero_college_students_small_2x.jpg);
+}
+
+
+/*third-wrapper*/
+
+
+.third-wrapper{
+    padding-top: 40px;
+    background-image: url(img/home/promo_iphone_family_small_2x.jpg);
+}
+
+
+/*fourth- fifth -wrapper*/
+
+
+.left-wrapper{
+    padding-top: 50px;
     color: black;
-    background-color: white;
-    background-image: url(../img/home/hero_college_students_small_2x.jpg);
     height: 500px;
     background-position: center;
     background-repeat: no-repeat;
@@ -165,22 +281,9 @@ body{
     text-align: center;
     margin-bottom: 10px;
 }
-.second-text-wrapper{
-    font-weight: 600;
-    font-size: 30px;
-    padding-bottom: 10px;
-}
-.second-button-wrapper {
-    padding-top: 20px;
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-}
-/*third-wrapper*/
-.third-wrapper{
-    padding-top: 40px;
+.right-wrapper{
+    padding-top: 50px;
     color: black;
-    background-image: url(../img/home/hero_privacy_small_2x.jpg);
     height: 500px;
     background-position: center;
     background-repeat: no-repeat;
@@ -189,131 +292,45 @@ body{
     margin-bottom: 10px;
 }
 
-.third-text2-wrapper{
-    font-size: 17px;
-    color: white;
-}
-.third-button-wrapper {
-    padding-top: 20px;
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-}
-/*fourth-left-wrapper*/
-.fourth-left-wrapper{
-    padding-top: 50px;
-    color: black;
-    background-image: url(../img/home/promo_iphone_family_small_2x.jpg);
-    height: 500px;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    text-align: center;
-    margin-bottom: 10px;
-}
-.fourth-text-wrapper{
-    font-weight: 600;
-    font-size: 30px;
-    padding-bottom: 10px;
-}
-.fourth-text2-wrapper{
+
+.fourth-fifth-wrapper .left-wrapper{
+   background-image: url(img/home/promo_macbook_air_m5_small_2x.jpg);
+    }
+
+.box-text{
     font-size: 20px;
 }
-.fourth-button-wrapper {
-    padding-top: 20px;
-    display: flex;
-    justify-content: center;
-    gap: 20px;
+
+.logo-wrapper{
+    padding-top: 10px;
+    height: 49px;
 }
-.fourth-left-wrapper .buy{
-    color: #06c;
-    background: white;
+
+.logo-text-wrapper {
+    font-size: 37px;
+    font-weight: 500;
+  
 }
+
 /*fifth-right-wrapper*/
-.fifth-right-wrapper{
-    padding-top: 50px;
-    color: black;
-    background-image: url(../images/apple/macbook-air.jpg);
-    height: 500px;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    text-align: center;
-    margin-bottom: 10px;
+.fourth-fifth-wrapper .right-wrapper{
+    background-image: url(images/apple/ipad-air.jpg);
 }
-.fifth-text-wrapper{
-    font-weight: 600;
-    font-size: 30px;
-    padding-bottom: 10px;
-}
-.fifth-text2-wrapper{
-    font-size: 20px;
-}
-.fifth-button-wrapper {
-    padding-top: 20px;
-    display: flex;
-    justify-content: center;
-}
-.fifth-right-wrapper .buy{
-    background: none;
-    color: #06c;
-}
-.fifth-button-wrapper {
-    padding-top: 20px;
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-}
+
+
+
 /*sixth-left-wrapper*/
-.sixth-left-wrapper{
-    padding-top: 50px;
-    color: black;
-    background-image: url(../images/apple/ipad-air.jpg);
-    height: 500px;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    text-align: center;
-    margin-bottom: 10px;
-}
-.sixth-text-wrapper{
-    font-weight: 600;
-    font-size: 30px;
-    padding-bottom: 10px;
-}
-.air{
-    font-family: cursive;
-    color: #06c;
-}
-.sixth-text2-wrapper{
-    font-size: 20px;
-}
-.sixth-button-wrapper {
-    padding-top: 20px;
-    display: flex;
-    justify-content: center;
-}
-.sixth-left-wrapper .buy{
-    background: none;
-    color: #06c;
-}
-.sixth-button-wrapper {
-    padding-top: 20px;
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-}
-/*seventh-right-wrapper*/
-.seventh-right-wrapper{
-    padding-top: 50px;
+.sixth-seventh-wrapper .left-wrapper{
     color: white;
-    background-image: url(../img/home/promo_macbook_pro.jpg);
-    height: 500px;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    text-align: center;
-    margin-bottom: 10px;
+    background-image: url(img/home/hero_privacy_small_2x.jpg);
+}
+
+
+/*seventh-right-wrapper*/
+.sixth-seventh-wrapper .right-wrapper{
+    color: white;
+    background-image: url(img/home/promo_macbook_pro.jpg);
+    
 }
 .seventh-text-wrapper{
     font-weight: 600;
@@ -321,90 +338,18 @@ body{
     padding-bottom: 10px;
 }
 
-.seventh-text2-wrapper{
-    font-size: 20px;
-}
-.seventh-button-wrapper {
-    padding-top: 20px;
-    display: flex;
-    justify-content: center;
-}
-.seventh-right-wrapper .buy{
-    background: none;
-    color: #06c;
-}
-.seventh-button-wrapper {
-    padding-top: 20px;
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-}
+
 /*eighth-left-wrapper*/
-.eighth-left-wrapper{
-    padding-top: 50px;
-    color: black;
-    background-image: url(../images/apple/two-iphone.jpg);
-    height: 500px;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    text-align: center;
-    margin-bottom: 10px;
-}
-.eighth-text-wrapper{
-    font-size: 30px;
-    padding-bottom: 10px;
+.eighth-nineth-wrapper .left-wrapper{
+    background-image: url(images/apple/two-iphone.jpg);
+    
 }
 
-.eighth-text2-wrapper{
-    font-size: 20px;
-}
-.eighth-button-wrapper {
-    padding-top: 20px;
-    display: flex;
-    justify-content: center;
-}
-.eighth-button-wrapper {
-    padding-top: 20px;
-    display: flex;
-    justify-content: center;
-}
 /*nineth-right-wrapper*/
-.nineth-right-wrapper{
-    padding-top: 50px;
-    color: black;
-    background-image: url(../img/home/promo_apple_card_small_2x.jpg);
-    height: 500px;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    text-align: center;
-    margin-bottom: 10px;
-}
-.nineth-text-wrapper{
-    font-weight: 600;
-    font-size: 30px;
-    padding-bottom: 10px;
+.eighth-nineth-wrapper .right-wrapper{
+    background-image: url(img/home/promo_apple_card_small_2x.jpg);
 }
 
-.nineth-text2-wrapper{
-    font-size: 20px;
-}
-.nineth-button-wrapper {
-    padding-top: 20px;
-    display: flex;
-    justify-content: center;
-}
-.nineth-right-wrapper .apply{
-    background: none;
-    color: #06c;
-}
-.nineth-button-wrapper {
-    padding-top: 20px;
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-}
 
 /*footer-wrapper*/
 .footer-wrapper{
@@ -451,7 +396,7 @@ details summary{
     margin-left: auto;
 }
 .footer-links-wrapper ul li{
-    padding: 15px 0 15px 0;
+    padding: 15px 0;
 }
 .footer-links-wrapper ul{
     list-style: none;
@@ -497,25 +442,13 @@ details summary{
     text-decoration: underline;
     color: #1d1d1f;
 }
-@media(min-width:768px){
-    .header-wrapper{
-        color: black;
-        background-color: white;
-    }
-    .internal-wrapper{
-        max-width: 980px;
-        padding: 0 10px;
-        margin: 0 auto;
-    }
+
+
+
+@media(min-width:734px){
     .first-wrapper{
-        background-image: url(../img/home/media_full/fathers-banner.jpg);
+        background-image: url(img/home/media_full/fathers-banner.jpg);
         height: 580px;
-        background-position: center;
-        background-repeat: no-repeat;
-        object-fit:cover;
-        background-size:cover;
-        justify-content: flex-end;  
-        text-align: center; 
         padding: 60px 0 30px 0;
         margin-bottom: 10px;
         margin-top: 37px;
@@ -529,26 +462,13 @@ details summary{
         font-size: 28px;
     }
     .second-wrapper{
-        background-image: url(../img/home/media_full/college_large.jpg);
+        background-image: url(img/home/media_full/college_large.jpg);
         height: 580px;
-        margin-bottom: 10px;
     }
-    .second-text-wrapper{
-        font-size: 48px;
-    }
-    .second-text2-wrapper{
-        font-size: 28px;
-    }
+    
     .third-wrapper{
         height: 580px;
         margin-bottom: 10px;
-    }
-
-    .third-text-wrapper{
-        font-size: 48px;
-    }
-    .third-text2-wrapper{
-        font-size: 28px;
     }
     
     .fourth-fifth-wrapper,
@@ -561,14 +481,24 @@ details summary{
         padding: 0 10px 0 10px;
         margin-bottom: 10px;
     }
-    .fourth-fifth-wrapper .fourth-left-wrapper,
-    .fourth-fifth-wrapper .fifth-right-wrapper,
-    .sixth-seventh-wrapper .sixth-left-wrapper,
-    .sixth-seventh-wrapper .seventh-right-wrapper,
-    .eighth-nineth-wrapper .eighth-left-wrapper,
-    .eighth-nineth-wrapper .nineth-right-wrapper{
+    .fourth-fifth-wrapper .left-wrapper,
+    .fourth-fifth-wrapper .right-wrapper,
+    .sixth-seventh-wrapper .left-wrapper,
+    .sixth-seventh-wrapper .right-wrapper,
+    .eighth-nineth-wrapper .left-wrapper,
+    .eighth-nineth-wrapper .right-wrapper{
         height: 580px;
         width: 50%;
+    }
+   
+}
+
+@media(min-width:834px){
+    
+    .internal-wrapper{
+        max-width: 980px;
+        padding: 0 10px;
+        margin: 0 auto;
     }
     .footer-links-wrapper {
         display: none;
@@ -616,10 +546,13 @@ details summary{
     .footer-links-wrapper2 ul li{
         padding: 0 10px;
     }
-    .header-wrapper .internal-wrapper > ul > li.wide-screen-appear{
+   .header-wrapper .internal-wrapper > ul > li.wide-screen-appear{
         display: flex;
     }
     .header-wrapper .internal-wrapper > ul > li.menu-link{
+        display: none;
+    }
+    .right-links .menu-link{
         display: none;
     }
 }
